@@ -17,6 +17,23 @@ spec:
       containers:
       - name: python-app
         image: ahmedrebii/python-sample-app-demo:v1
+        volumeMounts:
+          - name: db-connection
+            mountPath: /opt 
+
+   ####################### usinn ConfigMap ad ENV - not recommended in Production env ######################
+   #     env:
+   #    - name: DB-PORT
+   #      valueFrom:
+   #        configMapKetRef:
+   #         name: test-cm
+   #         key: db-port
+   ##########################################################
+  
         ports:
         - containerPort: 8000
+      volumes:
+        - name: db-connection
+          configMap:
+            name: test-cm
 
